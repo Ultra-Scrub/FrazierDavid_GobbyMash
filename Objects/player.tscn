@@ -76,3 +76,6 @@ fov = 80.842155
 transform = Transform3D(-0.006091437, -0.00025491443, -0.9979755, -0.51851034, -1.2252933, 0.0015725732, -1.4140676, 0.44929162, 0.0037224446, 0.7193912, -0.021420121, -0.74384356)
 
 [node name="AttackCoooldown" type="Timer" parent="." unique_id=824268339]
+one_shot = true
+
+[connection signal="timeout" from="AttackCoooldown" to="." method="_on_attack_coooldown_timeout"]

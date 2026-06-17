@@ -10,8 +10,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var sensivity = 0.003
 @onready var camera = $Firstperson
 @onready var animationplayer = $AnimationPlayer
-@onready var cooldown = $AttackCoooldown
-
+@onready var attackcooldown = $AttackCoooldown
+var cooldown:bool = false
 
 func _ready():
 	$Firstperson.current = true
@@ -30,7 +30,7 @@ func attack():
 	if Input.is_action_just_pressed("attack") and cooldown == false:
 		animationplayer.play("SwordSwing")
 		cooldown = true
-		cooldown.start()
+		attackcooldown.start()
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -68,4 +68,5 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_attack_coooldown_timeout() -> void:
+	cooldown = false
 	pass # Replace with function body.
