@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name Player
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -8,12 +8,22 @@ const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var sensivity = 0.003
+var cooldown:bool = false
+var gold = 0
+var hp = 50
+var maxhp = 50
+
+@onready var GoldLabel = $HUD/GoldLabel
+@onready var HPBar = $HUD/HPBar
 @onready var camera = $Firstperson
 @onready var animationplayer = $AnimationPlayer
 @onready var attackcooldown = $AttackCoooldown
-var cooldown:bool = false
+
+func player():
+	pass
 
 func _ready():
+	HPBar.max_value = 50
 	$Firstperson.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -38,7 +48,12 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * sensivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(70))
 
+func update_HUD():
+	HPBar.value = hp
+	GoldLabel.text = str(gold)
+
 func _process(_delta):
+	update_HUD()
 	attack()
 	_switch_veiw()
 	if Input.is_action_just_pressed("escape"):

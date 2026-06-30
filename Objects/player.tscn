@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dv3fkdr5fhqhv" path="res://Scripts/player.gd" id="1_y0qk3"]
 [ext_resource type="PackedScene" uid="uid://dwegekiltwb5" path="res://Model/Sword.glb" id="2_3y5cq"]
+[ext_resource type="Texture2D" uid="uid://cyj3e2c8japvm" path="res://Sprites/healthbarbacunder.png" id="3_0ad8t"]
+[ext_resource type="Texture2D" uid="uid://ccfvrr8eoh4os" path="res://Sprites/healthbarover.png" id="4_x20fu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ojbdc"]
 radius = 0.4
@@ -48,7 +50,7 @@ _data = {
 &"SwordSwing": SubResource("Animation_2i4gt")
 }
 
-[node name="Player" type="CharacterBody3D" unique_id=98751005]
+[node name="Player" type="CharacterBody3D" unique_id=98751005 groups=["Player"]]
 script = ExtResource("1_y0qk3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1229998060]
@@ -76,6 +78,25 @@ fov = 80.842155
 transform = Transform3D(-0.006091437, -0.00025491443, -0.9979755, -0.51851034, -1.2252933, 0.0015725732, -1.4140676, 0.44929162, 0.0037224446, 0.7193912, -0.021420121, -0.74384356)
 
 [node name="AttackCoooldown" type="Timer" parent="." unique_id=824268339]
+wait_time = 0.5
 one_shot = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2090075290]
+
+[node name="HPBar" type="TextureProgressBar" parent="HUD" unique_id=1934510044]
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 249.0
+offset_bottom = 23.0
+texture_under = ExtResource("3_0ad8t")
+texture_progress = ExtResource("4_x20fu")
+
+[node name="GoldLabel" type="Label" parent="HUD" unique_id=388107234]
+offset_left = 1102.0
+offset_top = 604.0
+offset_right = 1142.0
+offset_bottom = 638.0
+theme_type_variation = &"HeaderLarge"
+text = "0"
 
 [connection signal="timeout" from="AttackCoooldown" to="." method="_on_attack_coooldown_timeout"]

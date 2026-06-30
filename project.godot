@@ -15,9 +15,13 @@ run/main_scene="uid://kxgm3elcpr0l"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
-[filesystem]
+[display]
 
-import/blender/enabled=false
+window/stretch/mode="canvas_items"
+
+[global_group]
+
+Player=""
 
 [input]
 
