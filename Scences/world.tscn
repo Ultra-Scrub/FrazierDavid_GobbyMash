@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dpoepcwdhhq7q" path="res://Objects/tree.tscn" id="8_3fqxr"]
 [ext_resource type="PackedScene" uid="uid://etrnp86lh0md" path="res://Objects/enemy.tscn" id="10_vmd5f"]
 [ext_resource type="PackedScene" uid="uid://dqc6xakmxl0tn" path="res://Objects/hp_potion.tscn" id="11_npiv4"]
+[ext_resource type="PackedScene" uid="uid://b4mpgfc8msgbk" path="res://Objects/fire.tscn" id="12_apemh"]
+[ext_resource type="PackedScene" uid="uid://cyry6tba1jwsx" path="res://Model/tavernprops/torch.glb" id="13_j7yey"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7vbm1"]
 size = Vector3(50, 1, 50)
@@ -490,3 +492,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.020757, 0, -11.780174)
 
 [node name="HP Potion" parent="." unique_id=1159286041 instance=ExtResource("11_npiv4")]
 transform = Transform3D(0.37956485, 0, 0, 0, 0.288997, 0, 0, 0, 0.3589386, -8.420348, 0.5047265, 0.7190025)
+
+[node name="Fire" parent="." unique_id=1125678826 instance=ExtResource("12_apemh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5090947, -0.6077026, 1.4379826)
+
+[node name="torch" parent="." unique_id=1211313607 instance=ExtResource("13_j7yey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4988074, 0.20000002, 1.4085519)

@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://b4mpgfc8msgbk"]
+
+[ext_resource type="Texture2D" uid="uid://blemj0jvhtow6" path="res://T_Fire1.png" id="1_5ltu8"]
+[ext_resource type="Texture2D" uid="uid://dgmm21xet0xqa" path="res://Embers.png" id="2_x6ecg"]
+[ext_resource type="PackedScene" uid="uid://cyry6tba1jwsx" path="res://Model/tavernprops/torch.glb" id="3_o6wmu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icfi2"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_5ltu8")
+albedo_texture_force_srgb = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_eo6dx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9980277, 0.37403268), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r2yji"]
+texture_mode = 1
+curve = SubResource("Curve_eo6dx")
+
+[sub_resource type="Gradient" id="Gradient_qjybw"]
+offsets = PackedFloat32Array(0.19725738, 0.3913502, 0.7457806)
+colors = PackedColorArray(1, 1, 1, 1, 0.93870604, 0.5132014, 0.13228744, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f37y5"]
+gradient = SubResource("Gradient_qjybw")
+
+[sub_resource type="Curve" id="Curve_tgnow"]
+_data = [Vector2(0, 0.53317726), 0.0, 1.7857181, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bwgbv"]
+curve = SubResource("Curve_tgnow")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_umj4n"]
+lifetime_randomness = 0.8
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 0.49997765
+gravity = Vector3(0, 1, 0)
+scale_min = 0.9
+scale_max = 1.4
+scale_curve = SubResource("CurveTexture_bwgbv")
+color = Color(1.4228003, 0.8071835, 0.06751911, 1)
+color_ramp = SubResource("GradientTexture1D_f37y5")
+alpha_curve = SubResource("CurveTexture_r2yji")
+
+[sub_resource type="QuadMesh" id="QuadMesh_aiuiy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2k5r8"]
+render_priority = 1
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("2_x6ecg")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_6pvs2"]
+_data = [Vector2(0, 1), 0.0, -0.9445405, 0, 1, Vector2(0.09467456, 0.91057605), 0.0, 0.0, 0, 0, Vector2(0.14003944, 0.67211235), 0.0, 0.0, 0, 0, Vector2(0.28599605, 0.92548), 0.0, 0.0, 0, 0, Vector2(0.43984222, 0.09830904), 0.0, 0.0, 0, 0, Vector2(0.48520708, 0.7987962), -0.11565822, -0.11565822, 0, 0, Vector2(0.58185405, 0.951562), 0.0, 0.0, 0, 0, Vector2(0.71597636, 0.19891089), 0.0, 0.0, 0, 0, Vector2(0.77317554, 0.8397821), 0.0, 0.0, 0, 0, Vector2(0.9861933, 0.09085703), -3.5157871, 0.0, 1, 0]
+point_count = 10
+
+[sub_resource type="CurveTexture" id="CurveTexture_jd5mo"]
+curve = SubResource("Curve_6pvs2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gwkax"]
+lifetime_randomness = 0.1
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.8
+emission_ring_radius = 0.6
+emission_ring_inner_radius = 0.4
+emission_ring_cone_angle = 90.0
+direction = Vector3(1, 1, 0)
+spread = 25.0
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+gravity = Vector3(0, 1, 0)
+scale_min = 0.04
+scale_max = 0.089999996
+scale_curve = SubResource("CurveTexture_jd5mo")
+color = Color(4.768765, 2.4064155, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7mbn0"]
+
+[sub_resource type="Animation" id="Animation_4dgd1"]
+resource_name = "Init"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333333, 0.43197352, 0.6666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.004, 2.004, 5.591, 2.387, 3.969]
+}
+
+[sub_resource type="Animation" id="Animation_e8bjs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.004]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gi2fe"]
+_data = {
+&"Init": SubResource("Animation_4dgd1"),
+&"RESET": SubResource("Animation_e8bjs")
+}
+
+[node name="Fire" type="Node3D" unique_id=1125678826]
+
+[node name="Fire" type="GPUParticles3D" parent="." unique_id=1970343849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012727141, 1.0700282, 0)
+material_override = SubResource("StandardMaterial3D_icfi2")
+amount = 50
+lifetime = 1.2
+process_material = SubResource("ParticleProcessMaterial_umj4n")
+draw_pass_1 = SubResource("QuadMesh_aiuiy")
+
+[node name="Empers" type="GPUParticles3D" parent="." unique_id=1879405443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018668592, 1.0566969, 0.013471365)
+material_override = SubResource("StandardMaterial3D_2k5r8")
+amount = 35
+process_material = SubResource("ParticleProcessMaterial_gwkax")
+draw_pass_1 = SubResource("QuadMesh_7mbn0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1831414128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0443836, 0)
+light_color = Color(1, 0.5, 0, 1)
+light_energy = 2.004
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1237242071]
+libraries/ = SubResource("AnimationLibrary_gi2fe")
+autoplay = &"Init"
+
+[node name="torch" parent="." unique_id=1211313607 instance=ExtResource("3_o6wmu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11603069, 0, -3.456371)
