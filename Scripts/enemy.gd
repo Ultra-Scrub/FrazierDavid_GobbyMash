@@ -4,9 +4,10 @@ extends CharacterBody3D
 enum States {attack, idle, chase, die}
 
 var state = States.idle
-var hp = 15
+var hp = 20
 var speed = 2
 var accel = 10
+var damage = 10
 var gravity = 9.8
 var target = null
 
@@ -37,8 +38,11 @@ func _physics_process(delta):
 	elif state == States.die:
 		velocity = Vector3.ZERO
 		animationplayer.play("Die")
-		
+
 	move_and_slide()
+
+func attack():
+	target.hp -= damage
 
 func _on_chase_area_body_entered(body: Node3D) -> void:
 	if body.has_method("player"):

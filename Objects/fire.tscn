@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://blemj0jvhtow6" path="res://T_Fire1.png" id="1_5ltu8"]
 [ext_resource type="Texture2D" uid="uid://dgmm21xet0xqa" path="res://Embers.png" id="2_x6ecg"]
-[ext_resource type="PackedScene" uid="uid://cyry6tba1jwsx" path="res://Model/tavernprops/torch.glb" id="3_o6wmu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icfi2"]
 transparency = 1
@@ -144,8 +143,8 @@ _data = {
 [node name="Fire" type="GPUParticles3D" parent="." unique_id=1970343849]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012727141, 1.0700282, 0)
 material_override = SubResource("StandardMaterial3D_icfi2")
-amount = 50
-lifetime = 1.2
+amount = 30
+fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_umj4n")
 draw_pass_1 = SubResource("QuadMesh_aiuiy")
 
@@ -160,10 +159,9 @@ draw_pass_1 = SubResource("QuadMesh_7mbn0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0443836, 0)
 light_color = Color(1, 0.5, 0, 1)
 light_energy = 2.004
+shadow_enabled = true
+shadow_bias = 2.041
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1237242071]
 libraries/ = SubResource("AnimationLibrary_gi2fe")
 autoplay = &"Init"
-
-[node name="torch" parent="." unique_id=1211313607 instance=ExtResource("3_o6wmu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11603069, 0, -3.456371)

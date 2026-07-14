@@ -11,7 +11,9 @@ var sensivity = 0.003
 var cooldown:bool = false
 var gold = 0
 var hp = 50
+var damage = 10
 var maxhp = 50
+var target = []
 
 @onready var GoldLabel = $HUD/GoldLabel
 @onready var HPBar = $HUD/HPBar
@@ -41,6 +43,9 @@ func attack():
 		animationplayer.play("SwordSwing")
 		cooldown = true
 		attackcooldown.start()
+
+func deal_damage():
+	target.hp -= damage
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -85,3 +90,13 @@ func _physics_process(delta: float) -> void:
 func _on_attack_coooldown_timeout() -> void:
 	cooldown = false
 	pass # Replace with function body.
+
+
+func _on_attackzone_body_entered(body: Node3D) -> void:
+	if body.has_method("enemy"):
+		target.append(body)
+
+
+func _on_attackzone_body_exited(body: Node3D) -> void:
+	if body.has_method("enemy"):
+		target.erase(body)

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://lfckxkguo6sg" path="res://Model/CliffProps/cliffProps2.glb" id="6_vmd5f"]
 [ext_resource type="PackedScene" uid="uid://cn4xvddsabbpi" path="res://Model/CliffProps/cliffProps1.glb" id="7_npiv4"]
 [ext_resource type="PackedScene" uid="uid://dpoepcwdhhq7q" path="res://Objects/tree.tscn" id="8_3fqxr"]
+[ext_resource type="Texture2D" uid="uid://bk56n2xlyaj6s" path="res://overcast_soil_puresky_4k.exr" id="10_go4et"]
 [ext_resource type="PackedScene" uid="uid://etrnp86lh0md" path="res://Objects/enemy.tscn" id="10_vmd5f"]
 [ext_resource type="PackedScene" uid="uid://dqc6xakmxl0tn" path="res://Objects/hp_potion.tscn" id="11_npiv4"]
 [ext_resource type="PackedScene" uid="uid://b4mpgfc8msgbk" path="res://Objects/fire.tscn" id="12_apemh"]
@@ -49,16 +50,30 @@ size = Vector3(1, 5, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vmd5f"]
 size = Vector3(1, 5, 50)
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4memr"]
+panorama = ExtResource("10_go4et")
+
+[sub_resource type="Sky" id="Sky_w5n7y"]
+sky_material = SubResource("PanoramaSkyMaterial_4memr")
+
 [sub_resource type="Environment" id="Environment_x5ytc"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.37101442, 0.7547932, 0.8358637, 1)
+background_energy_multiplier = 0.4
+sky = SubResource("Sky_w5n7y")
 ssao_enabled = true
 ssao_power = 5.2233043
 sdfgi_enabled = true
 sdfgi_use_occlusion = true
+fog_mode = 1
+fog_light_color = Color(0.45, 0.17099999, 0.17099999, 1)
+fog_light_energy = 2.68
+fog_sun_scatter = 0.1
+fog_density = 0.8232
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.005
 volumetric_fog_albedo = Color(1, 0.99607843, 1, 1)
+volumetric_fog_sky_affect = 0.0
 
 [node name="World" type="Node3D" unique_id=488353723]
 
@@ -84,11 +99,9 @@ mesh = SubResource("QuadMesh_nbkwn")
 transform = Transform3D(-0.9033279, 0, -0.428951, 0, 1, 0, 0.428951, 0, -0.9033279, -10.160774, 0.008583084, 11.667933)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1027252152]
-transform = Transform3D(1, 0, 0, 0, 0.023088625, 0.99973345, 0, -0.99973345, 0.023088625, -47.825287, 22.543207, -48.88713)
-light_energy = 2.0
-light_indirect_energy = 2.0
-light_volumetric_fog_energy = 2.0
+transform = Transform3D(0.3640767, 0.7036547, -0.610179, 0.8525035, 0.012068875, 0.5225826, 0.37508172, -0.7104397, -0.59547395, -47.825287, 21.332182, -48.88713)
 shadow_enabled = true
+shadow_blur = 2.923
 
 [node name="Player" parent="." unique_id=98751005 instance=ExtResource("1_of7y3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.421362, 0.9730525, 4.862968)
