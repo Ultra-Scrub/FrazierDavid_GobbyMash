@@ -10,10 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://cn4xvddsabbpi" path="res://Model/CliffProps/cliffProps1.glb" id="7_npiv4"]
 [ext_resource type="PackedScene" uid="uid://dpoepcwdhhq7q" path="res://Objects/tree.tscn" id="8_3fqxr"]
 [ext_resource type="Texture2D" uid="uid://bk56n2xlyaj6s" path="res://overcast_soil_puresky_4k.exr" id="10_go4et"]
-[ext_resource type="PackedScene" uid="uid://etrnp86lh0md" path="res://Objects/enemy.tscn" id="10_vmd5f"]
 [ext_resource type="PackedScene" uid="uid://dqc6xakmxl0tn" path="res://Objects/hp_potion.tscn" id="11_npiv4"]
 [ext_resource type="PackedScene" uid="uid://b4mpgfc8msgbk" path="res://Objects/fire.tscn" id="12_apemh"]
 [ext_resource type="PackedScene" uid="uid://cyry6tba1jwsx" path="res://Model/tavernprops/torch.glb" id="13_j7yey"]
+[ext_resource type="PackedScene" uid="uid://ygr8lk42ngnj" path="res://Scences/respawner.tscn" id="15_4memr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7vbm1"]
 size = Vector3(50, 1, 50)
@@ -100,8 +100,12 @@ transform = Transform3D(-0.9033279, 0, -0.428951, 0, 1, 0, 0.428951, 0, -0.90332
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1027252152]
 transform = Transform3D(0.3640767, 0.7036547, -0.610179, 0.8525035, 0.012068875, 0.5225826, 0.37508172, -0.7104397, -0.59547395, -47.825287, 21.332182, -48.88713)
+light_color = Color(0.88, 0.7018, 0.6424, 1)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 1.253
 shadow_enabled = true
 shadow_blur = 2.923
+sky_mode = 1
 
 [node name="Player" parent="." unique_id=98751005 instance=ExtResource("1_of7y3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.421362, 0.9730525, 4.862968)
@@ -500,14 +504,20 @@ transform = Transform3D(1, 7.275958e-12, -9.313226e-10, 9.326868e-10, 1, -5.8207
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1252212040]
 environment = SubResource("Environment_x5ytc")
 
-[node name="Enemy" parent="." unique_id=2059264664 instance=ExtResource("10_vmd5f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.020757, 0, -11.780174)
-
 [node name="HP Potion" parent="." unique_id=1159286041 instance=ExtResource("11_npiv4")]
-transform = Transform3D(0.37956485, 0, 0, 0, 0.288997, 0, 0, 0, 0.3589386, -8.420348, 0.5047265, 0.7190025)
+transform = Transform3D(0.37956485, 0, 0, 0, 0.288997, 0, 0, 0, 0.3589386, -8.420348, 0.5047265, 1.9897819)
 
 [node name="Fire" parent="." unique_id=1125678826 instance=ExtResource("12_apemh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5090947, -0.6077026, 1.4379826)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5090947, -0.6077026, 1.4410322)
 
 [node name="torch" parent="." unique_id=1211313607 instance=ExtResource("13_j7yey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4988074, 0.20000002, 1.4085519)
+
+[node name="Respawner" parent="." unique_id=806969557 instance=ExtResource("15_4memr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7197335, 1.1793785, -6.241108)
+
+[node name="Respawner2" parent="." unique_id=1442047467 instance=ExtResource("15_4memr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.813708, 1.1793785, -6.664846)
+
+[node name="Respawner3" parent="." unique_id=38814353 instance=ExtResource("15_4memr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5170171, 1.1793785, -11.023586)

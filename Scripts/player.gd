@@ -45,7 +45,8 @@ func attack():
 		attackcooldown.start()
 
 func deal_damage():
-	target.hp -= damage
+	for enemies in target:
+		enemies.hp -= damage
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:

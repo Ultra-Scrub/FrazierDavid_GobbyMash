@@ -9,10 +9,18 @@ var speed = 2
 var accel = 10
 var damage = 10
 var gravity = 9.8
+var value = 15
 var target = null
 
 @export var navAgent : NavigationAgent3D
 @export var animationplayer : AnimationPlayer
+
+func enemy():
+	pass
+
+func _process(delta):
+	if hp <= 0:
+		state = States.die
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -20,7 +28,7 @@ func _physics_process(delta):
 	
 	if state == States.idle:
 		print("idle")
-		velocity = Vector3.ZERO
+		velocity = Vector3(0, velocity.y, 0)
 		animationplayer.play("Idle")
 	elif state == States.chase:
 		look_at(Vector3(target.global_position.x, global_position.y, target.global_position.z), Vector3.UP, true)
@@ -44,23 +52,26 @@ func _physics_process(delta):
 func attack():
 	target.hp -= damage
 
+func give_loot():
+	target.gold += value
+
 func _on_chase_area_body_entered(body: Node3D) -> void:
-	if body.has_method("player"):
+	if body.has_method("player") and state != States.die:
 		target = body
 		state = States.chase
 
 
 func _on_chase_area_body_exited(body: Node3D) -> void:
-	if body.has_method("player"):
+	if body.has_method("player") and state != States.die:
 		target = null
 		state = States.idle
 
 
 func _on_attack_area_body_entered(body: Node3D) -> void:
-	if body.has_method("player"):
+	if body.has_method("player") and state != States.die:
 		state = States.attack
 
 
 func _on_attack_area_body_exited(body: Node3D) -> void:
-	if body.has_method("player"):
+	if body.has_method("player") and state != States.die:
 		state = States.chase

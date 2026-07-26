@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dwegekiltwb5" path="res://Model/Sword.glb" id="2_3y5cq"]
 [ext_resource type="Texture2D" uid="uid://cyj3e2c8japvm" path="res://Sprites/healthbarbacunder.png" id="3_0ad8t"]
 [ext_resource type="Texture2D" uid="uid://ccfvrr8eoh4os" path="res://Sprites/healthbarover.png" id="4_x20fu"]
+[ext_resource type="PackedScene" uid="uid://th2culiw85me" path="res://Model/Hooded Adventurer by Quaternius - y9KWOVG21R.glb" id="5_x20fu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ojbdc"]
 radius = 0.4
@@ -43,6 +44,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-0.4660029, 0, 0), Vector3(0, 0, 0)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.36666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"deal_damage"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ad8t"]
 _data = {
@@ -51,14 +66,17 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ad8t"]
+size = Vector3(1, 1, 1.6708984)
 
 [node name="Player" type="CharacterBody3D" unique_id=98751005 groups=["Player"]]
 script = ExtResource("1_y0qk3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1229998060]
+visible = false
 mesh = SubResource("CapsuleMesh_ojbdc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=93838768]
+visible = false
 shape = SubResource("CapsuleShape3D_y0qk3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1777439096]
@@ -104,8 +122,12 @@ text = "0"
 [node name="attackzone" type="Area3D" parent="." unique_id=1131829601]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="attackzone" unique_id=995194027]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0258542)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3613034)
 shape = SubResource("BoxShape3D_0ad8t")
+
+[node name="Root Scene" parent="." unique_id=454816007 instance=ExtResource("5_x20fu")]
+
+[node name="Sword" parent="Root Scene" unique_id=182127280 instance=ExtResource("2_3y5cq")]
 
 [connection signal="timeout" from="AttackCoooldown" to="." method="_on_attack_coooldown_timeout"]
 [connection signal="body_entered" from="attackzone" to="." method="_on_attackzone_body_entered"]
